@@ -1,14 +1,17 @@
 import './code.css'
 
-export { Page }
+export { Page };
 
 function Page() {
   return (
-    <>
-      <h1>About</h1>
+    <div className="about">
+      <h1>About Us</h1>
       <p>
-        Example of using <code>vite-plugin-ssr</code>.
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur
+        maxime quibusdam asperiores sunt molestias veritatis et pariatur sequi
+        fugit labore. Commodi deleniti accusamus voluptates omnis nihil,
+        mollitia ducimus modi pariatur.
       </p>
-    </>
-  )
+    </div>
+  );
 }

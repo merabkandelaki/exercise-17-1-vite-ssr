@@ -1,104 +1,76 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import logo from './logo.svg'
-import './PageShell.css'
-import { PageContextProvider } from './usePageContext'
-import { Link } from './Link'
-import { childrenPropType } from './PropTypeValues'
+import React from 'react';
+import PropTypes from 'prop-types';
+import './PageShell.css';
+import { PageContextProvider } from './usePageContext';
+import { Link } from './Link';
+import { childrenPropType } from './PropTypeValues';
 
-export { PageShell }
+export { PageShell };
 
 PageShell.propTypes = {
   pageContext: PropTypes.any,
-  children: childrenPropType
-}
+  children: childrenPropType,
+};
 function PageShell({ pageContext, children }) {
   return (
     <React.StrictMode>
       <PageContextProvider pageContext={pageContext}>
+        <Header></Header>
         <Layout>
-          <Sidebar>
-            <Logo />
-            <Link className="navitem" href="/">
-              Home
-            </Link>
-            <Link className="navitem" href="/about">
-              About
-            </Link>
-          </Sidebar>
+          
           <Content>{children}</Content>
         </Layout>
       </PageContextProvider>
     </React.StrictMode>
-  )
+  );
 }
 
 Layout.propTypes = {
-  children: childrenPropType
-}
+  children: childrenPropType,
+};
 function Layout({ children }) {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        maxWidth: 900,
-        margin: 'auto'
-      }}
-    >
-      {children}
-    </div>
-  )
+  return <div>{children}</div>;
 }
 
-Sidebar.propTypes = {
-  children: childrenPropType
-}
-function Sidebar({ children }) {
+function Header({ children }) {
   return (
-    <div
+    <header
       style={{
-        padding: 20,
-        flexShrink: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        lineHeight: '1.8em'
+        display: "flex",
+        justifyContent: "space-between",
+        backgroundColor: "#000000",
+        borderBottom: "2px solid #2c2c2c",
+        padding: "20px",
       }}
     >
+      <strong style={{ color: 'white' }}>NextJs</strong>
+      <nav style={{ display: "flex", gap: "30px" }}>
+        <Link href="/" style={{ textDecoration: "none" }}>
+          Home
+        </Link>
+        <Link href="/about" style={{ textDecoration: "none" }}>
+          About
+        </Link>
+      </nav>
       {children}
-    </div>
-  )
+    </header>
+  );
 }
 
 Content.propTypes = {
-  children: childrenPropType
-}
+  children: childrenPropType,
+};
 function Content({ children }) {
   return (
     <div
-      style={{
-        padding: 20,
-        paddingBottom: 50,
-        borderLeft: '2px solid #eee',
-        minHeight: '100vh'
-      }}
+      // style={{
+      //   padding: 20,
+      //   paddingBottom: 50,
+      //   borderLeft: '2px solid #eee',
+      //   minHeight: '100vh',
+      // }}
     >
       {children}
     </div>
-  )
-}
-
-function Logo() {
-  return (
-    <div
-      style={{
-        marginTop: 20,
-        marginBottom: 10
-      }}
-    >
-      <a href="/">
-        <img src={logo} height={64} width={64} alt="logo" />
-      </a>
-    </div>
-  )
+  );
 }
